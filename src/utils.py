@@ -10,7 +10,7 @@ def save_to_excel(news_data, file_path):
 
     df.to_excel(file_path, index=False, engine='openpyxl')
 
-    logging.info(f"Dados salvos no arquivo {file_path}")
+    logging.info(f"Save Data in {file_path}")
     return file_path
 
 
