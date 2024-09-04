@@ -1,0 +1,7 @@
+tasks:
+  Default:
+    command: python -m src.main
+pythonPath:
+  - src
+artifactsDir: output
+workItemType: RPA
