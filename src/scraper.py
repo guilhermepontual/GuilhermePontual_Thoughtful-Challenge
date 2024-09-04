@@ -28,8 +28,6 @@ class NewsScraper:
             output_file = os.path.join(output_dir, "news_data.xlsx")
             save_to_excel(news_items, output_file)
 
-            logging.info(f"Dados salvos no arquivo {output_file}")
-
             return news_items
         finally:
             self.browser.close_browser()
@@ -46,10 +44,19 @@ class NewsScraper:
         news_items = []
         cutoff_date = datetime.now() - timedelta(days=self.number_of_months * 30)
         articles_xpath = '//div[@class="content"]//div[@class="col"]/div/div/div/div/a'
+        close_pop = '//button[@title="Close"]'
         time.sleep(10)
+
+        try:
+            if self.browser.is_element_visible(close_pop):
+                self.browser.click_element(close_pop)
+                logging.info("Pop-up closed successfully")
+        except Exception as e:
+            logging.info("No pop-ups found or error closing pop-up")
+
         articles = self.browser.find_elements(articles_xpath)
         logging.info(f"Found {len(articles)} articles.")
-        for index in range(1, 2):
+        for index in range(1, 5):
             try:
                 article_xpath = f"({articles_xpath})[{index}]"
                 self.browser.wait_until_element_is_visible(article_xpath, timeout=120)
@@ -108,7 +115,7 @@ class NewsScraper:
 
             return date
         except ValueError as e:
-            logging.error(f"Erro ao parsear a data: {e}")
+            logging.error(f"Date Parser error: {e}")
             return None
 
     def search_phrase_count(self, title, description):
