@@ -17,7 +17,7 @@ To run this project locally or on Robocorp Control Room, you will need the follo
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/YOUR_USERNAME/ThoughtfulChallenge.git
+   git clone https://github.com/guilhermepontual/GuilhermePontual_Thoughtful-Challenge.git
    cd ThoughtfulChallenge
    
 2. **Create a virtual environment (optional but recommended)**
@@ -56,4 +56,4 @@ Create or modify the input.json file located at devdata/work_items/input.json
    
 2. **Output**:
    ```bash
-   The extracted news data will be saved in an Excel file located at output/news_data.xlsx
+   The extracted news data will be saved in an Excel file located at src/output/news_data.xlsx
